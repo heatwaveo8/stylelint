@@ -93,14 +93,10 @@ test("standalone with syntax set by extension", t => {
     syntax: "scss",
   }).then(({ results }) => {
     t.equal(results.length, 3, "correct number of files")
-    const sssResult = results.find(r => path.extname(r.source) === ".sss")
-    const lessResult = results.find(r => path.extname(r.source) === ".less")
     const scssResult = results.find(r => path.extname(r.source) === ".scss")
-    t.equal(sssResult._postcssResult.opts.syntax, scss)
-    t.equal(lessResult._postcssResult.opts.syntax, scss)
     t.equal(scssResult._postcssResult.opts.syntax, scss)
   }).catch(logError)
-  planned += 4
+  planned += 2
 
   standalone({
     files: `${fixturesPath}/extension-sensitive.*`,
@@ -108,14 +104,10 @@ test("standalone with syntax set by extension", t => {
     syntax: "less",
   }).then(({ results }) => {
     t.equal(results.length, 3, "correct number of files")
-    const sssResult = results.find(r => path.extname(r.source) === ".sss")
     const lessResult = results.find(r => path.extname(r.source) === ".less")
-    const scssResult = results.find(r => path.extname(r.source) === ".scss")
-    t.equal(sssResult._postcssResult.opts.syntax, less)
     t.equal(lessResult._postcssResult.opts.syntax, less)
-    t.equal(scssResult._postcssResult.opts.syntax, less)
   }).catch(logError)
-  planned += 4
+  planned += 2
 
   standalone({
     files: `${fixturesPath}/extension-sensitive.*`,
@@ -124,13 +116,9 @@ test("standalone with syntax set by extension", t => {
   }).then(({ results }) => {
     t.equal(results.length, 3, "correct number of files")
     const sssResult = results.find(r => path.extname(r.source) === ".sss")
-    const lessResult = results.find(r => path.extname(r.source) === ".less")
-    const scssResult = results.find(r => path.extname(r.source) === ".scss")
     t.equal(sssResult._postcssResult.opts.syntax, sugarss)
-    t.equal(lessResult._postcssResult.opts.syntax, sugarss)
-    t.equal(scssResult._postcssResult.opts.syntax, sugarss)
   }).catch(logError)
-  planned += 4
+  planned += 2
 
   standalone({
     files: `${fixturesPath}/extension-sensitive.*`,
